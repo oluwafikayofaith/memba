@@ -1,0 +1,72 @@
+{% extends "user/home_layout.html"%}
+  
+{% block content %}
+
+
+
+   <div class="content">
+    
+
+
+    <div class="row g-5">
+    <div class="col-md-8">
+      
+        <hr>
+        <h3 class="pb-4 mb-4 fst-italic border-bottom">
+            Contact Us
+          </h3>
+          {%set done = get_flashed_messages()%}
+          {%if done:%}
+          {% for d in done%}
+            <span class="alert alert-success">{{d}}</span>
+          {%endfor%}
+          {%endif%}
+        <form action="" method="post" novalidate>
+            {#{{contact.csrf.token}}#}
+            {{contact.hidden_tag()}}
+            <div class="mb-3 form-group row">
+                {{contact.email.label(class_='col-md-2')}}
+                <div class="col-md-6">
+                    {{contact.email(class_='form-control')}}
+                </div>
+                {%if contact.email.errors%}
+                {%for email_error in contact.email.errors%}
+                <span class="alert alert-danger">{{email_error}}</span>
+            {%endfor%}
+            {%endif%}
+            </div>
+            <div class="mb-3 form-group row">
+                {{contact.message.label}}
+                <div>
+                    {{contact.message(class_='form-control')}}
+                </div>
+                {%if contact.message.errors%}
+                {%for message_error in contact.message.errors%}
+                <span class="alert alert-danger">{{message_error}}</span>
+            {%endfor%}
+            {%endif%}
+            </div>
+            <div class="col">
+                {{contact.submit(class_='btn btn-outline-success btn-large col-9')}}
+            </div>
+        </form>
+
+    </div>
+
+    <div class="col-md-4">
+      <div class="position-sticky" style="top: 2rem;">
+    
+       
+      </div>
+    </div>
+  </div>
+
+
+
+   </div>
+  </div>
+ 
+    
+{% endblock%}
+
+   

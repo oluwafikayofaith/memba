@@ -1,0 +1,84 @@
+{% extends "user/home_layout.html"%}
+{% block usernav %}
+    
+  <header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+       
+        <ul class="member nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-start mb-md-0">
+          <li><a href="dashboard.html" class="nav-link px-2 " style="color:#FF5714">Dashboard</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Conversations</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Shop</a></li>
+        
+        </ul>
+
+         
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+
+{% endblock %}
+{{rspjson}}
+
+{% block content %}
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5">
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ url_for('static',filename='images/home_hero.jpg')}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Nigeria Welcomes her 5th President</h1>
+        <p class="lead">Party members can start the preparation for the swaering in ceremony of the Democratically elected President on May 29th, 2023. <br> The two-day event will see visitors from all across the nation in the smart city of Abuja. </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-secondary px-4 me-md-2">Register Me</button>
+          <a href="/login" class="btn btn-outline-success px-4">Login</a>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+
+  </div>
+
+{% block more_content %}
+ <div class="layout" id="partner">
+  
+  <div class="container px-4 py-5" id="custom-cards">
+    <h2 class="pb-2 border-bottom">Our Partner Hotels</h2>
+
+    <div class="row row-cols-1 row-cols-lg-4 align-items-stretch g-4 py-5">
+      {%if rspjson and rspjson['status']==True%}
+      {%for p in rspjson['message']%}
+      <div class="col">
+       <img src="{{ url_for('static',filename='images/h1.jpg')}}" class="img-fluid" alt="">          
+        <p>{{p.name}}</p>
+      </div>
+      {%endfor%}
+      {%else%}
+      <div class="col">
+        <p class="alert alert-danger">sorry, our patner hotels are down at the moment,kindly check back</p>
+      </div>
+      {%endif%}
+    </div>
+  </div> 
+ </div>
+
+ {% endblock %}
+  
+</main>
+
+     <script src="{{url_for('static',filename='assets/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+      
+  </body>
+</html>

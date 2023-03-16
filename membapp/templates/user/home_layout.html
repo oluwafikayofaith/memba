@@ -1,0 +1,267 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Hugo 0.108.0">
+    <title>Memba - Welcome!</title>
+
+<link href="{{url_for('static',filename='assets/dist/css/bootstrap.min.css')}}" rel="stylesheet">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300&display=swap" rel="stylesheet">
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+
+      .b-example-divider {
+        height: 3rem;
+        background-color: rgba(0, 0, 0, .1);
+        border: solid rgba(0, 0, 0, .15);
+        border-width: 1px 0;
+        box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
+      }
+
+      .b-example-vr {
+        flex-shrink: 0;
+        width: 1.5rem;
+        height: 100vh;
+      }
+
+      .bi {
+        vertical-align: -.125em;
+        fill: currentColor;
+      }
+
+      .nav-scroller {
+        position: relative;
+        z-index: 2;
+        height: 2.75rem;
+        overflow-y: hidden;
+      }
+
+      .nav-scroller .nav {
+        display: flex;
+        flex-wrap: nowrap;
+        padding-bottom: 1rem;
+        margin-top: -1px;
+        overflow-x: auto;
+        text-align: center;
+        white-space: nowrap;
+        -webkit-overflow-scrolling: touch;
+      }
+    </style>
+
+    
+    <!-- Custom styles for this template -->
+    <link href="{{ url_for('static',filename='heroes.css')}}" rel="stylesheet">
+  </head>
+  <body style="background-color: #F1FAEE;">
+   
+    <nav class="navbar navbar-expand-md fixed-top">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">
+          <img src="{{ url_for('static',filename='images/logowhite.png')}}" height="30" class="logo">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarCollapse">
+          <ul class="navbar-nav me-auto mb-2 mb-md-0">
+            <li class="nav-item">
+              <a class="nav-link text-white active" aria-current="page" href="/">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/#partner">Partner Hotels</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/blog">Our Blog</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link text-white" href="/contact">Contact Us</a>
+            </li>
+          </ul>
+          <form class="d-flex" role="search">
+            <ul class="navbar-nav me-auto mb-2 mb-md-0">
+             
+              <li class="nav-item">
+                <a class="btn btn-warning" href="#">Donate</a>
+              </li>
+              
+            </ul>
+          </form>
+        </div>
+      </div>
+    </nav>
+       
+<main>
+
+<div class="container col-xxl-8 px-4 py-5" >
+{% if session.get('user') !=None: %}
+  
+  <header class="p-3 mb-3 border-bottom">
+    <div class="container">
+      <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+       
+        <ul class="member nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-start mb-md-0">
+          <li><a href="/dashboard" class="nav-link px-2 " style="color:#FF5714">Dashboard</a></li>
+          <li><a href="/blog" class="nav-link px-2 link-dark">Conversations</a></li>
+          <li><a href="#" class="nav-link px-2 link-dark">Shop</a></li>
+        
+        </ul>
+
+         
+        <div class="dropdown text-end">
+          <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            {% if deets:%}
+              {% if deets.user_pix !='' and deets.user_pix != None %}
+              <img src="{{ url_for('static',filename='uploads/'+deets.user_pix)}}" alt="mdo" width="32" height="32" class="rounded-circle">
+              {% else %}
+              <img src="{{ url_for('static',filename='uploads/avatar.png')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+              {% endif%}
+            {%else%}
+            <img src="{{ url_for('static',filename='uploads/avatar.png')}}" alt="mdo" width="32" height="32" class="rounded-circle">
+            {% endif %}
+            
+          </a>
+          <ul class="dropdown-menu text-small">
+            <li><a class="dropdown-item" href="{{ url_for('profile')}}">Profile</a></li>
+            <li><a class="dropdown-item" href="{{ url_for('profile_picture')}}">Profile Picture</a></li>
+
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="{{ url_for('user_logout')}}">Sign out</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </header>
+{% endif %}
+
+{% block content %}
+    <div class="row flex-lg-row-reverse align-items-center g-5 py-5" >
+      <div class="col-10 col-sm-8 col-lg-6">
+        <img src="{{ url_for('static',filename='images/home_hero.jpg')}}" class="d-block mx-lg-auto img-fluid" alt="Bootstrap Themes" width="700" height="500" loading="lazy">
+      </div>
+      <div class="col-lg-6">
+        <h1 class="display-5 fw-bold lh-1 mb-3">Nigeria Welcomes her 5th President</h1>
+        <p class="lead">Party members can start the preparation for the swaering in ceremony of the Democratically elected President on May 29th, 2023. <br> The two-day event will see visitors from all across the nation in the smart city of Abuja. </p>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-start">
+          <button type="button" class="btn btn-secondary px-4 me-md-2">Register Me</button>
+          <a href="login.html" class="btn btn-outline-success px-4">Login</a>
+        </div>
+      </div>
+    </div>
+{% endblock content %}
+  </div>
+
+{% block more_content %}
+<!--The home page can populate this for other contents like partner hotel-->
+{% endblock more_content %}
+  
+<!-- FOOTER -->
+<footer class="container" style="height:100px; line-height:100px;">
+  <p class="float-end"><a href="#" style="color:#FF5714">Back to top</a></p>
+  <p>&copy; 2017–2022 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">Contact Us</a></p>
+  
+</footer>
+
+</main>
+
+<script src="{{url_for('static',filename='assets/dist/js/bootstrap.bundle.min.js')}}"></script>
+
+
+<script src="{{url_for('static',filename='assets/jquery-3.6.1.min.js')}}"> </script>
+{% block customjs %}
+
+{% endblock %}
+
+<script>
+  
+  $(document).ready(function(){
+    $('#ajaxcontact').click(function(){
+      //retrieve the form data
+      var email = $('#email').val()
+      var message = $('#message').val()
+      var csrf = "{{csrf_token()}}"
+      var data2send ={"email":email,"message":message,"csrf_token":csrf} //"email="+email+"&msg="+message
+      //make ajax call ==similar to a user submiting a form
+      $.ajax({
+        url:"/ajaxcontact",
+        data:data2send,
+        type:"POST",
+        dataType:'text',
+        beforeSend:function(){
+          $('#ajaxcontact').html("Please wait..")
+          $('#ajaxcontact').attr('disabled','disabled')
+        },
+        success:function(rsp){
+          alert(rsp)
+          $('#ajaxcontact').html("Send Message")
+          $('#ajaxcontact').removeAttr('disabled')
+        },
+        error:function(e){
+        console.log(e)
+        }
+      })
+
+    })
+  })
+</script>
+
+
+
+    <!-- Modal -->
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Send Your Message Here</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="form-group row mb-3">
+          {% if contact %}
+          {{ contact.email.label(class_='col-md-2') }}
+          <div class="col-md-10">
+            {{ contact.email(class_='form-control border-success')}}
+          </div>
+          {%endif%}
+
+        </div>
+        <div class="form-group row mb-3">
+          {% if contact %}
+          {{ contact.message.label(class_='col-md-2') }}
+          <div class="col-md-10">
+            {{ contact.message(class_='form-control border-success')}}
+          </div>
+          {%endif%}
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary" id="ajaxcontact">Send Message</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+  </body>
+</html>

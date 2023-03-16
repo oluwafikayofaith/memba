@@ -1,0 +1,19 @@
+{% extends "user/home_layout.html"%}
+  
+{% block content %}
+<div class="content" style="background-color: white;padding:3em">
+  <h3>Donation Confirmation Page</h3>
+  <p>Thank you for choosing to Donate to Memba App</p>
+  <p>Please confirm your donation details as follows:</p>
+  <p>Amount:&#8358;{{ donor.don_amt}}</p>
+  <p>Name of Donor:{{ donor.don_donor}}</p>
+  <p> <b>Ref Number</b>:{{ refno}} <i class="text-danger">Please take note of this</i></p>
+  <form method="post" action="/confirm">
+    <input type="hidden" name="csrf_token" value="{{csrf_token()}}">
+    <a href="/donate" class="btn btn-lg btn-danger">Sorry, I changed My mind</a>
+    <button class="btn btn-lg btn-warning">Confirm and Make Payment</button>
+    
+  </form>
+ </div>
+ 
+{% endblock %}

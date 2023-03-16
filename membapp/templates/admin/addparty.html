@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/admin.css')}}">
+    <title>Party Register</title>
+</head>
+<body>
+    <div class="login">
+      <h1>
+        Party Register
+    </h1>
+      <form method="post" action="/admin/party" novalidate>
+        <div class="txt_field">
+          <input type="text" name="partyname" required>
+          <span></span>
+          <label>Name</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="text" name="partycode" required>
+          <span></span>
+          <label>Short Code</label>
+        </div>
+
+        <div class="txt_field">
+            <input type="text" name="partycontact" required>
+            <span></span>
+            <label>Party Contact</label>
+          </div>
+          <div>
+        <input type="submit" value="ADD">
+    </div>
+      </form>
+    </div>
+    
+</body>
+</html>

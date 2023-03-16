@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/admin.css')}}">
+    <title>Admin Register</title>
+</head>
+<body>
+    <div class="login">
+      <h1>
+        Admin Register
+    </h1>
+      <form method="post" action="" novalidate>
+        {% with m=get_flashed_messages() %}
+        {% if m%}
+                {% for msg in m%}
+                <div class="alert alert-info">Registration succesful</div>
+                {%endfor%}
+        {% endif%}
+        {% endwith%}
+        <div class="txt_field">
+          <input type="text" name="username" required>
+          <span></span>
+          <label>Username</label>
+        </div>
+
+        <div class="txt_field">
+          <input type="password" name="pwd" required>
+          <span></span>
+          <label>Password</label>
+        </div>
+
+        <input type="submit" value="Register">
+        <div class="signup_link">
+          Not a member? <a href="#">Signup</a>
+        </div>
+
+      </form>
+    </div>
+    
+</body>
+</html>

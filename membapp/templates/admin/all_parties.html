@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='bootstrap/css/bootstrap.css')}}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='fontawesome/css/all.min.css')}}">
+    <link rel="stylesheet" href="{{ url_for('static',filename='css/admin.css')}}">
+    <title>Party </title>
+</head>
+<body>
+      <table class="table table-stripe">
+        <thead>
+        <tr>
+            <th>s/n</th>
+            <th>Party</th>
+            <th>code</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+        <tbody>
+            {% for p in data%}
+        <tr>
+            <td>{{loop.index}}</td>
+            <td>{{p.party_name}}</td>
+            <td>{{p.party_shortcode}}</td>
+            <td><a href="#">Edit</a></td>
+
+        </tr>
+        {% endfor%}
+        </tbody>
+      </table>
+      <div><a href="{{ url_for ('add_party')}}" class="btn btn-success">Add a New Party</a></div>
+    
+</body>
+</html>
